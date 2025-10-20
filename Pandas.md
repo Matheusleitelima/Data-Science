@@ -60,3 +60,70 @@ Também é possível ler tabelas diretamente de páginas web:
 print(dados_html)
 
 
+# 📘 Leitura e Visualização de Dados com Pandas
+
+Este documento apresenta os principais comandos utilizados para realizar a leitura e análise inicial de dados em um DataFrame do **Pandas**.
+
+## 🔹 Exibir as primeiras e últimas linhas
+- Mostrar as 5 primeiras linhas:
+```python
+dados.head()
+Mostrar as 5 últimas linhas:
+
+python
+Copiar código
+dados.tail()
+Mostrar um número específico de linhas:
+
+python
+Copiar código
+dados.head(2)  # Mostra as 2 primeiras linhas (índices 0 e 1)
+dados.tail(8)  # Mostra as 8 últimas linhas
+🔹 Verificar colunas e índices
+Listar todas as colunas do DataFrame:
+
+python
+Copiar código
+dados.columns
+Verificar informações sobre as linhas (início, fim e incremento do índice):
+
+python
+Copiar código
+dados.index
+🔹 Acessar colunas específicas
+Selecionar uma única coluna:
+
+python
+Copiar código
+dados['Name']
+⚠️ Atenção: os nomes das colunas são sensíveis a maiúsculas e minúsculas!
+
+Selecionar múltiplas colunas:
+
+python
+Copiar código
+dados[['Name', 'Age', 'Wage']]
+🔹 Acessar linhas específicas
+Selecionar uma linha pelo índice:
+
+python
+Copiar código
+dados.iloc[1]  # Mostra os dados da linha com índice 1
+Selecionar um intervalo de linhas:
+
+python
+Copiar código
+dados.iloc[0:4]  # Mostra as linhas de índice 0 até 3
+🔹 Acessar um valor específico (linha e coluna)
+Sintaxe:
+
+python
+Copiar código
+dados.iloc[linha, coluna]
+Exemplo:
+
+python
+Copiar código
+dados.iloc[2, 2]  # Mostra o valor da linha 2 e coluna 2
+
+
