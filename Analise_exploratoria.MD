@@ -2,9 +2,11 @@
 
 ## 📌 Descrição
 
-Este documento apresenta o processo de Análise Exploratória de Dados
-(EDA) realizado com os microdados do ENEM, utilizando Python e
-bibliotecas de análise de dados.
+Este projeto apresenta uma **Análise Exploratória de Dados (EDA)**
+utilizando os microdados do ENEM.\
+O objetivo é compreender a estrutura do conjunto de dados, selecionar
+variáveis relevantes e analisar distribuições e proporções para melhor
+entendimento do dataset.
 
 ------------------------------------------------------------------------
 
@@ -17,15 +19,21 @@ import matplotlib.pyplot as plt
 
 ------------------------------------------------------------------------
 
-## 1️⃣ Visualização das Colunas do Dataset
+## 🔎 1. Visualização das Colunas
+
+Para visualizar todas as colunas disponíveis no dataset:
 
 ``` python
 microdadosEnem.columns.values
 ```
 
+Esse comando retorna todas as variáveis presentes no conjunto de dados.
+
 ------------------------------------------------------------------------
 
-## 2️⃣ Seleção de Colunas Específicas
+## 🎯 2. Seleção de Colunas Específicas
+
+Criação de uma lista contendo as colunas desejadas:
 
 ``` python
 colunasSelecionadasEnem = [
@@ -47,75 +55,121 @@ colunasSelecionadasEnem = [
 ]
 ```
 
+Filtragem do DataFrame:
+
 ``` python
 microdadosEnemSelecionado = microdadosEnem.filter(items=colunasSelecionadasEnem)
+```
+
+Visualização das primeiras linhas:
+
+``` python
 microdadosEnemSelecionado.head()
 ```
 
 ------------------------------------------------------------------------
 
-## 3️⃣ Seleção de Intervalo de Linhas
+## 📌 3. Seleção de Intervalo de Linhas
+
+Para selecionar um intervalo específico de registros:
 
 ``` python
 microdadosEnem[0:100]
 ```
 
-------------------------------------------------------------------------
-
-## 4️⃣ Análise por Município
+Também é possível atribuir a uma variável:
 
 ``` python
-coluna_NO_MUNICIPIO_PROVA = microdadosEnemSelecionado['NO_MUNICIPIO_PROVA']
-coluna_NO_MUNICIPIO_PROVA.value_counts().sort_index()
+amostra = microdadosEnem[0:100]
 ```
 
 ------------------------------------------------------------------------
 
-## 5️⃣ Análise por Faixa Etária
+## 🏙️ 4. Análise por Município
+
+Seleção da coluna:
+
+``` python
+coluna_NO_MUNICIPIO_PROVA = microdadosEnemSelecionado['NO_MUNICIPIO_PROVA']
+```
+
+Contagem de ocorrências por município:
+
+``` python
+coluna_NO_MUNICIPIO_PROVA.value_counts().sort_index()
+```
+
+-   `value_counts()` realiza a contagem dos valores.
+-   `sort_index()` organiza os resultados em ordem alfabética.
+
+------------------------------------------------------------------------
+
+## 👥 5. Análise por Faixa Etária
+
+Seleção da coluna:
 
 ``` python
 coluna_TP_FAIXA_ETARIA = microdadosEnemSelecionado['TP_FAIXA_ETARIA']
+```
+
+Distribuição das faixas etárias:
+
+``` python
 coluna_TP_FAIXA_ETARIA.value_counts().sort_index()
 ```
 
 ------------------------------------------------------------------------
 
-## 6️⃣ Visualização Gráfica
+## 📊 6. Visualização Gráfica
+
+Construção de histograma para análise da distribuição etária:
 
 ``` python
 coluna_TP_FAIXA_ETARIA.hist(bins=30)
-plt.xlabel("Faixa Etária")
-plt.ylabel("Quantidade")
-plt.title("Distribuição por Faixa Etária")
-plt.show()
 ```
+
+-   `hist()` gera o gráfico de distribuição.
+-   `bins` define a quantidade de intervalos do histograma.
 
 ------------------------------------------------------------------------
 
-## 7️⃣ Análise Percentual por Sexo
+## ⚖️ 7. Percentual por Sexo
+
+Seleção da coluna:
 
 ``` python
 coluna_TP_SEXO = microdadosEnemSelecionado['TP_SEXO']
-distInSexo = coluna_TP_SEXO.value_counts()
-percentInSexo = 100 * distInSexo / distInSexo.sum()
 ```
 
-Forma alternativa:
+Distribuição absoluta:
 
 ``` python
-percentInSexo = coluna_TP_SEXO.value_counts(normalize=True) * 100
+distInSexo = coluna_TP_SEXO.value_counts()
+```
+
+Cálculo do percentual:
+
+``` python
+percentInSexo = 100 * distInSexo / distInSexo.sum()
 ```
 
 Exemplo de resultado:
 
     TP_SEXO
-    F    60.57%
-    M    39.42%
+    F    60.573619
+    M    39.426381
 
 ------------------------------------------------------------------------
 
-## ✅ Considerações Finais
+## ✅ Conclusão
 
-A Análise Exploratória de Dados permitiu compreender a estrutura do
-dataset, identificar padrões de distribuição e calcular métricas
-percentuais relevantes para entendimento inicial dos dados.
+A Análise Exploratória de Dados permitiu:
+
+-   Selecionar e organizar variáveis relevantes;
+-   Analisar a distribuição por município;
+-   Avaliar a distribuição por faixa etária;
+-   Visualizar dados graficamente;
+-   Calcular proporções percentuais por sexo.
+
+Essa etapa é essencial para compreensão inicial do dataset e preparação
+para análises estatísticas ou modelagens futuras.
