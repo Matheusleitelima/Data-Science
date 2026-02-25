@@ -161,6 +161,45 @@ Exemplo de resultado:
 
 ------------------------------------------------------------------------
 
+## 🔎 loc
+
+Loc: localizar dentro dos dados um dado específico.
+
+EX: quem tiver a nacionalidade brazil.
+
+``` python
+microdadosEnem.loc[microdadosEnem['TX_COR'] == 'AZUL']
+```
+
+Vai filtrar somente as linhas onde `TX_COR = AZUL`.
+
+------------------------------------------------------------------------
+
+## 📊 sort
+
+``` python
+microdadosEnem.sort_values('TX_GABARITO')
+```
+
+Organiza em ordem alfabética e numérica.
+
+------------------------------------------------------------------------
+
+``` python
+microdadosEnem.sort_values('TX_GABARITO', ascending=False)
+```
+
+Inverte a ordem da lista.
+
+------------------------------------------------------------------------
+
+``` python
+microdadosEnem.sort_values(['TX_GABARITO', 'TX_MOTIVO_ABAN'])
+```
+
+Ordena utilizando duas colunas ao mesmo tempo.
+
+
 ## ✅ Conclusão
 
 A Análise Exploratória de Dados permitiu:
