@@ -1,67 +1,19 @@
-# 📊 Guia de Comandos - Pandas e Matplotlib
-
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  🧠 Sintaxe                                               🎯 O que faz          💻 Exemplo de uso
-  -------------------------------------------------------- --------------------- ------------------------------------------------------------------------------------
-  `import pandas as pd`                                    Importa a biblioteca  `df = pd.read_csv("arquivo.csv")`
-                                                           Pandas para           
-                                                           manipulação de dados. 
-
-  `import matplotlib.pyplot as plt`                        Importa o Matplotlib  `plt.plot([1,2,3],[4,5,6]); plt.show()`
-                                                           para criação de       
-                                                           gráficos.             
-
-  `microdadosEnem.columns.values`                          Exibe todos os nomes  `print(microdadosEnem.columns.values)`
-                                                           das colunas do        
-                                                           DataFrame.            
-
-  `colunasSelecionadasEnem = [ ... ]`                      Cria lista com as     `colunasSelecionadasEnem = ['TP_SEXO', 'TP_FAIXA_ETARIA']`
-                                                           colunas desejadas.    
-
-  `microdadosEnem.filter(items=colunasSelecionadasEnem)`   Filtra o DataFrame    `microdadosEnemSelecionado = microdadosEnem.filter(items=colunasSelecionadasEnem)`
-                                                           mantendo apenas as    
-                                                           colunas selecionadas. 
-
-  `microdadosEnemSelecionado.head()`                       Exibe as 5 primeiras  `microdadosEnemSelecionado.head()`
-                                                           linhas do DataFrame.  
-
-  `microdadosEnem[0:100]`                                  Seleciona as 100      `microdadosEnem[0:100]`
-                                                           primeiras linhas do   
-                                                           DataFrame.            
-
-  `amostra = microdadosEnem[0:100]`                        Armazena as 100       `amostra = microdadosEnem[0:100]`
-                                                           primeiras linhas em   
-                                                           uma variável.         
-
-  `microdadosEnemSelecionado['NO_MUNICIPIO_PROVA']`        Seleciona apenas a    `municipios = microdadosEnemSelecionado['NO_MUNICIPIO_PROVA']`
-                                                           coluna de município.  
-
-  `.value_counts()`                                        Conta a frequência de `microdadosEnemSelecionado['TP_SEXO'].value_counts()`
-                                                           cada valor na coluna. 
-
-  `.sort_index()`                                          Ordena os valores     `microdadosEnemSelecionado['TP_SEXO'].value_counts().sort_index()`
-                                                           pelo índice (ordem    
-                                                           alfabética ou         
-                                                           numérica).            
-
-  `microdadosEnemSelecionado['TP_FAIXA_ETARIA']`           Seleciona coluna de   `faixa = microdadosEnemSelecionado['TP_FAIXA_ETARIA']`
-                                                           faixa etária.         
-
-  `.hist(bins=30)`                                         Cria histograma para  `microdadosEnemSelecionado['TP_FAIXA_ETARIA'].hist(bins=30); plt.show()`
-                                                           visualizar            
-                                                           distribuição dos      
-                                                           dados.                
-
-  `microdadosEnemSelecionado['TP_SEXO']`                   Seleciona coluna de   `coluna_TP_SEXO = microdadosEnemSelecionado['TP_SEXO']`
-                                                           sexo.                 
-
-  `distInSexo = coluna_TP_SEXO.value_counts()`             Armazena contagem     `distInSexo = coluna_TP_SEXO.value_counts()`
-                                                           absoluta por sexo.    
-
-  `percentInSexo = 100 * distInSexo / distInSexo.sum()`    Calcula percentual de `percentInSexo = 100 * distInSexo / distInSexo.sum()`
-                                                           cada categoria.       
-
-  `distInSexo.sum()`                                       Soma total de         `total = distInSexo.sum()`
-                                                           ocorrências para      
-                                                           cálculo proporcional. 
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| 🧠 Comando / Sintaxe                                   | 🎯 O que faz                                                  | 💻 Exemplo de uso                                                                  |
+| ------------------------------------------------------ | ------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `import pandas as pd`                                  | Importa a biblioteca Pandas para manipulação de dados.        | `df = pd.read_csv("arquivo.csv")`                                                  |
+| `import matplotlib.pyplot as plt`                      | Importa Matplotlib para criação de gráficos.                  | `plt.plot([1,2,3],[4,5,6]); plt.show()`                                            |
+| `microdadosEnem.columns.values`                        | Visualiza todos os nomes das colunas do DataFrame.            | `print(microdadosEnem.columns.values)`                                             |
+| `colunasSelecionadasEnem = [ ... ]`                    | Cria uma lista com as colunas desejadas.                      | `colunasSelecionadasEnem = ['TP_SEXO','TP_FAIXA_ETARIA']`                          |
+| `microdadosEnem.filter(items=colunasSelecionadasEnem)` | Filtra o DataFrame mantendo apenas as colunas selecionadas.   | `microdadosEnemSelecionado = microdadosEnem.filter(items=colunasSelecionadasEnem)` |
+| `microdadosEnemSelecionado.head()`                     | Exibe as 5 primeiras linhas do DataFrame.                     | `microdadosEnemSelecionado.head()`                                                 |
+| `microdadosEnem[0:100]`                                | Seleciona as 100 primeiras linhas do DataFrame.               | `microdadosEnem[0:100]`                                                            |
+| `amostra = microdadosEnem[0:100]`                      | Armazena as 100 primeiras linhas em uma variável.             | `amostra = microdadosEnem[0:100]`                                                  |
+| `microdadosEnemSelecionado['NO_MUNICIPIO_PROVA']`      | Seleciona apenas a coluna de município.                       | `municipios = microdadosEnemSelecionado['NO_MUNICIPIO_PROVA']`                     |
+| `.value_counts()`                                      | Conta a frequência de cada valor na coluna.                   | `microdadosEnemSelecionado['TP_SEXO'].value_counts()`                              |
+| `.sort_index()`                                        | Ordena os valores pelo índice (ordem alfabética ou numérica). | `microdadosEnemSelecionado['TP_SEXO'].value_counts().sort_index()`                 |
+| `microdadosEnemSelecionado['TP_FAIXA_ETARIA']`         | Seleciona coluna de faixa etária.                             | `faixa = microdadosEnemSelecionado['TP_FAIXA_ETARIA']`                             |
+| `.hist(bins=30)`                                       | Cria histograma para visualizar distribuição dos dados.       | `microdadosEnemSelecionado['TP_FAIXA_ETARIA'].hist(bins=30); plt.show()`           |
+| `microdadosEnemSelecionado['TP_SEXO']`                 | Seleciona coluna de sexo.                                     | `coluna_TP_SEXO = microdadosEnemSelecionado['TP_SEXO']`                            |
+| `distInSexo = coluna_TP_SEXO.value_counts()`           | Armazena contagem absoluta por categoria.                     | `distInSexo = coluna_TP_SEXO.value_counts()`                                       |
+| `percentInSexo = 100 * distInSexo / distInSexo.sum()`  | Calcula percentual de cada categoria.                         | `percentInSexo = 100 * distInSexo / distInSexo.sum()`                              |
+| `distInSexo.sum()`                                     | Soma o total de ocorrências.                                  | `total = distInSexo.sum()`                                                         |
