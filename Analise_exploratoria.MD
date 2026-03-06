@@ -356,3 +356,104 @@ O método `groupby()` é uma das ferramentas mais importantes do **Pandas** para
 - Explorar padrões nos dados
 
 Ele é amplamente utilizado em **análise de dados, ciência de dados e business intelligence**.
+
+# 📊 Manipulação de Dados com Pandas
+
+Neste exemplo será demonstrado como **criar um dicionário para traduzir códigos numéricos em descrições** e **adicionar uma nova coluna ao DataFrame** com essas informações.
+
+O exemplo utiliza dados dos **microdados do ENEM**.
+
+---
+
+# 📌 Estrutura inicial do DataFrame
+
+Ao visualizar as primeiras linhas do conjunto de dados:
+
+```python
+microdadosEnemSelecionados.head()
+```
+
+Resultado:
+
+| NU_INSCRICAO | NU_ANO | TP_ESTADO_CIVIL | TP_ANO_CONCLUIU |
+|--------------|------|----------------|----------------|
+|210062064233|2024|1|3|
+|210062064234|2024|1|10|
+|210062064235|2024|1|9|
+|210062064236|2024|1|0|
+|210062064237|2024|3|18|
+
+A coluna **TP_ESTADO_CIVIL** contém códigos numéricos que representam o estado civil do participante.
+
+---
+
+# 📚 Criando um dicionário de estado civil
+
+Para tornar os dados mais compreensíveis, podemos criar um **dicionário que relaciona os códigos com suas descrições**.
+
+```python
+dicionario = {
+    1: 'Solteiro',
+    2: 'Casado',
+    3: 'Viúvo'
+}
+```
+
+Esse dicionário permite transformar códigos numéricos em valores descritivos.
+
+---
+
+# ➕ Criando uma nova coluna no DataFrame
+
+Agora podemos criar uma nova coluna chamada **NO_QUALSEUESTADOCIVIL**, que irá armazenar a descrição correspondente ao código presente na coluna **TP_ESTADO_CIVIL**.
+
+```python
+microdadosEnemSelecionados['NO_QUALSEUESTADOCIVIL'] = [
+    dicionario[resp] for resp in microdadosEnemSelecionados.TP_ESTADO_CIVIL
+]
+```
+
+Essa operação percorre cada valor da coluna **TP_ESTADO_CIVIL** e substitui o código pelo texto correspondente no dicionário.
+
+---
+
+# 📊 Agrupando os dados por estado civil
+
+Também podemos analisar a distribuição dos participantes por estado civil utilizando o método `groupby()`.
+
+```python
+microdadosEnemSelecionados.groupby('TP_ESTADO_CIVIL').count()
+```
+
+Esse comando agrupa os registros por estado civil e mostra a quantidade de ocorrências em cada categoria.
+
+---
+
+# 🧠 Resultado da transformação
+
+Após executar os comandos, o DataFrame passará a ter uma nova coluna com a descrição do estado civil.
+
+Exemplo:
+
+| TP_ESTADO_CIVIL | NO_QUALSEUESTADOCIVIL |
+|----------------|----------------------|
+|1|Solteiro|
+|1|Solteiro|
+|1|Solteiro|
+|1|Solteiro|
+|3|Viúvo|
+
+Isso facilita a interpretação dos dados durante a análise.
+
+---
+
+# 🚀 Conclusão
+
+Utilizando **dicionários e manipulação de colunas no Pandas**, é possível:
+
+- Traduzir códigos numéricos para descrições
+- Tornar os dados mais legíveis
+- Criar novas colunas derivadas
+- Facilitar análises e visualizações
+
+Essas técnicas são muito utilizadas em **processos de limpeza e preparação de dados (Data Cleaning)**, etapa essencial em projetos de **Análise de Dados e Ciência de Dados**.
