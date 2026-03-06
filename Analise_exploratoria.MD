@@ -212,3 +212,147 @@ A Análise Exploratória de Dados permitiu:
 
 Essa etapa é essencial para compreensão inicial do dataset e preparação
 para análises estatísticas ou modelagens futuras.
+
+# Análise de Dados com Pandas - Uso do GroupBy
+
+Este documento apresenta um exemplo de análise de dados utilizando a biblioteca **Pandas** em Python, com foco no método `groupby()` para agrupar e analisar informações.
+
+## 1. Valores Ausentes (NaN)
+
+Em conjuntos de dados, `NaN` significa **Not a Number**, ou seja, um valor ausente ou não preenchido em uma coluna numérica.
+
+Esses valores podem atrapalhar algumas análises, por isso muitas vezes precisamos removê-los.
+
+Podemos remover linhas com valores ausentes utilizando o método:
+
+```python
+microdadosEnemSexoFaixaEtaria = microdadosEnemSexoFaixaEtaria.dropna()
+```
+
+Para visualizar as primeiras linhas do conjunto de dados:
+
+```python
+microdadosEnemSexoFaixaEtaria.head()
+```
+
+---
+
+# 2. Agrupando Dados com `groupby()`
+
+O método `groupby()` permite **agrupar dados de acordo com uma coluna** e aplicar operações estatísticas nesses grupos.
+
+Neste exemplo, vamos agrupar os dados pela coluna **TP_SEXO** (sexo).
+
+### Contagem de registros por sexo
+
+```python
+microdadosEnemSexoFaixaEtaria.groupby('TP_SEXO').count()
+```
+
+Esse comando mostra a **distribuição de registros separados por sexo (masculino e feminino)**.
+
+---
+
+# 3. Análise da Faixa Etária
+
+## Faixa etária máxima por sexo
+
+```python
+microdadosEnemSexoFaixaEtaria.groupby('TP_SEXO').max()
+```
+
+Esse comando retorna o **valor máximo da faixa etária para cada sexo**.
+
+---
+
+## Faixa etária mínima por sexo
+
+```python
+microdadosEnemSexoFaixaEtaria.groupby('TP_SEXO').min()
+```
+
+Esse comando retorna o **valor mínimo da faixa etária para cada sexo**.
+
+---
+
+# 4. Filtrando Dados
+
+Podemos filtrar registros antes de aplicar o `groupby()`.
+
+Exemplo: selecionar apenas registros com **faixa etária maior que 1**.
+
+```python
+microdadosEnemSexoFaixaEtaria[
+    microdadosEnemSexoFaixaEtaria.TP_FAIXA_ETARIA > 1
+].groupby('TP_SEXO').min()
+```
+
+Isso retorna os valores mínimos considerando **somente registros com faixa etária acima de 1**.
+
+---
+
+# 5. Média por Grupo
+
+Podemos calcular a média dos valores para cada grupo.
+
+```python
+microdadosEnemSexoFaixaEtaria.groupby('TP_SEXO').mean()
+```
+
+---
+
+# 6. Mediana por Grupo
+
+A mediana representa o valor central da distribuição.
+
+```python
+microdadosEnemSexoFaixaEtaria.groupby('TP_SEXO').median()
+```
+
+---
+
+# 7. Visualização com Histograma
+
+Também podemos gerar gráficos para visualizar a distribuição dos dados.
+
+```python
+microdadosEnemSexoFaixaEtaria.groupby('TP_SEXO').hist()
+```
+
+Isso gera **histogramas separados por sexo**, permitindo observar a distribuição dos dados.
+
+---
+
+# 8. Estatísticas Descritivas
+
+Podemos obter um resumo estatístico completo utilizando:
+
+```python
+microdadosEnemSexoFaixaEtaria.groupby('TP_SEXO').describe()
+```
+
+Esse comando retorna várias métricas, como:
+
+- count (quantidade)
+- mean (média)
+- std (desvio padrão)
+- min (mínimo)
+- 25%
+- 50% (mediana)
+- 75%
+- max (máximo)
+
+Isso fornece uma **visão geral completa do conjunto de dados agrupado por sexo**.
+
+---
+
+# Conclusão
+
+O método `groupby()` é uma das ferramentas mais importantes do **Pandas** para análise de dados, pois permite:
+
+- Agrupar informações
+- Calcular estatísticas
+- Comparar grupos
+- Explorar padrões nos dados
+
+Ele é amplamente utilizado em **análise de dados, ciência de dados e business intelligence**.
