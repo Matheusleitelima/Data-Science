@@ -457,3 +457,72 @@ Utilizando **dicionários e manipulação de colunas no Pandas**, é possível:
 - Facilitar análises e visualizações
 
 Essas técnicas são muito utilizadas em **processos de limpeza e preparação de dados (Data Cleaning)**, etapa essencial em projetos de **Análise de Dados e Ciência de Dados**.
+
+# 📊 Análise de Desempenho de Jogadores
+
+Este projeto tem como objetivo criar uma métrica simples para avaliar o desempenho de jogadores a partir de dados estatísticos. Para isso, é criada uma nova coluna chamada **`total`**, que representa a soma de algumas estatísticas importantes do jogador.
+
+## 🧮 Criação de uma Nova Coluna
+
+Podemos criar uma nova coluna no DataFrame utilizando a soma de outras colunas. Neste exemplo, o valor **total** é calculado somando:
+
+* `matches_played`
+* `goals`
+* `assists`
+
+```python
+dados['total'] = dados['matches_played'] + dados['goals'] + dados['assists']
+```
+
+### Explicação
+
+* `dados['total']` → cria uma nova coluna chamada **total**.
+* `dados['matches_played'] + dados['goals'] + dados['assists']` → soma os valores dessas colunas para cada jogador.
+
+---
+
+## 🔎 Filtrando Colunas Específicas
+
+Após criar a coluna **total**, podemos filtrar apenas as informações relevantes para a análise.
+
+```python
+dados = dados[['nationality', 'total']]
+```
+
+### Explicação
+
+Esse comando mantém apenas as colunas:
+
+* `nationality`
+* `total`
+
+---
+
+## 📈 Ordenando os Jogadores pelo Melhor Desempenho
+
+Para descobrir quais jogadores possuem maior desempenho com base na métrica criada, podemos ordenar os dados em ordem decrescente.
+
+```python
+dados.sort_values('total', ascending=False)
+```
+
+### Explicação
+
+* `sort_values()` → ordena os dados.
+* `'total'` → coluna usada para ordenação.
+* `ascending=False` → ordena do **maior para o menor**.
+
+Assim, os jogadores com maior valor na coluna **total** aparecem primeiro na tabela.
+
+---
+
+## 🎯 Objetivo da Métrica
+
+Essa abordagem cria uma métrica simples para identificar jogadores com maior participação nas partidas, considerando:
+
+* número de partidas jogadas
+* gols marcados
+* assistências
+
+Esse tipo de análise pode ser utilizado como base para **exploração de dados esportivos e construção de indicadores de desempenho**.
+
