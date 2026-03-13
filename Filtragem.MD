@@ -89,3 +89,101 @@ Exemplo correto:
 # Conclusão
 
 O uso de filtros com `loc` e operadores lógicos permite realizar **análises específicas em datasets**, selecionando apenas os dados relevantes para estudo ou visualização.
+
+# Filtrando Dados com Regular Expression (Regex) no Pandas
+
+Este guia mostra como realizar **filtros em colunas de texto** utilizando **expressões regulares (Regex)** com a biblioteca **Pandas** no Python.
+
+Esse tipo de filtragem é muito útil quando os dados possuem **textos misturados** ou **informações combinadas na mesma coluna**, como endereço com número e nome da rua.
+
+---
+
+# Importando as bibliotecas
+
+Primeiro, precisamos importar o **Pandas** e o módulo **re** (responsável por trabalhar com expressões regulares).
+
+```python
+import pandas as pd
+import re
+
+df = pd.read_csv("brutos/DADOS/house.csv")
+```
+
+---
+
+# Filtrar casas de uma rua específica
+
+Suponha que a coluna **Address** contém valores como:
+
+```
+123 Turner St
+45 Turner St
+78 Smith Rd
+```
+
+Se quisermos filtrar apenas casas da rua **Turner St**, podemos usar:
+
+```python
+filter2 = df.loc[df['Address'].str.contains('Turner St')]
+filter2
+```
+
+Esse filtro retorna todas as linhas onde a coluna **Address** contém o texto **Turner St**.
+
+---
+
+# Filtrar mais de uma rua
+
+Também é possível filtrar **múltiplos valores** utilizando o operador `|`, que significa **OU (OR)**.
+
+```python
+filter2 = df.loc[df['Address'].str.contains('Turner St|Turner Rd')]
+filter2
+```
+
+Nesse caso, o filtro retorna linhas que contenham:
+
+- **Turner St**
+- **Turner Rd**
+
+---
+
+# Ignorar diferenças entre letras maiúsculas e minúsculas
+
+Em datasets reais, podem existir **variações na escrita**, como:
+
+```
+Turner St
+TURNER ST
+turner st
+```
+
+Para ignorar diferenças entre **maiúsculas e minúsculas**, usamos o parâmetro `flags=re.I`.
+
+```python
+filter2 = df.loc[df['Address'].str.contains('Turner St|Turner Rd', flags=re.I)]
+filter2
+```
+
+O parâmetro:
+
+```
+flags=re.I
+```
+
+faz com que o filtro **ignore diferenças entre letras maiúsculas e minúsculas**.
+
+---
+
+# Conclusão
+
+A utilização de **expressões regulares (Regex)** no Pandas permite realizar filtros mais flexíveis em colunas de texto.
+
+Principais vantagens:
+
+- Filtrar **partes de textos**
+- Buscar **múltiplos padrões**
+- Ignorar diferenças de **maiúsculas e minúsculas**
+- Trabalhar com **dados inconsistentes**
+
+Essas técnicas são muito utilizadas em **análise de dados e limpeza de datasets**.
