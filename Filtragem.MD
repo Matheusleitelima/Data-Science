@@ -187,3 +187,82 @@ Principais vantagens:
 - Trabalhar com **dados inconsistentes**
 
 Essas técnicas são muito utilizadas em **análise de dados e limpeza de datasets**.
+
+
+# 📌 Expressões Regulares com Condições no Pandas
+
+Neste exemplo, vamos combinar **expressões regulares (Regex)** com **condições lógicas** para filtrar dados de um DataFrame.
+
+## 🧠 Cenário
+
+Imagine que uma pessoa deseja encontrar uma casa com os seguintes critérios:
+
+- O endereço deve começar com o número **59**
+- O preço deve ser **menor ou igual a 500 mil**
+
+---
+
+## 🔍 Filtro com condição **E** (`&`)
+
+```python
+import re
+
+filter3 = df.loc[
+    df['Address'].str.contains('^59', flags=re.I) & (df['Price'] <= 500000)
+]
+
+filter3
+```
+
+### ✅ Explicação:
+
+- `^59` → O símbolo `^` indica que o valor deve **começar com 59**
+- `str.contains()` → Aplica a expressão regular na coluna `Address`
+- `flags=re.I` → Ignora letras maiúsculas/minúsculas
+- `&` → Operador lógico **E** (ambas as condições precisam ser verdadeiras)
+
+👉 Resultado:  
+Retorna apenas casas que **começam com 59** **E** têm preço **≤ 500.000**
+
+---
+
+## 🔍 Filtro com condição **OU** (`|`)
+
+```python
+import re
+
+filter3 = df.loc[
+    df['Address'].str.contains('^59', flags=re.I) | (df['Price'] <= 500000)
+]
+
+filter3
+```
+
+### ✅ Explicação:
+
+- `|` → Operador lógico **OU** (apenas uma condição precisa ser verdadeira)
+
+👉 Resultado:  
+Retorna casas que:
+
+- Começam com **59**  
+**OU**
+- Têm preço **≤ 500.000**
+
+---
+
+## ⚠️ Observações importantes
+
+- Sempre use **parênteses** ao combinar condições (`&` ou `|`)
+- Regex (`^`, `$`, etc.) é muito útil para filtrar padrões específicos em textos
+- Esse tipo de filtro é muito usado em **análise de dados**
+
+---
+
+## 🚀 Dica extra
+
+Se quiser buscar números em qualquer parte do endereço (não só no início), basta remover o `^`:
+
+```python
+df['Address'].str.contains('59')
+```
