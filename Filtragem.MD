@@ -266,3 +266,89 @@ Se quiser buscar números em qualquer parte do endereço (não só no início), 
 ```python
 df['Address'].str.contains('59')
 ```
+
+# 📊 Filtrando dados com `df.query` no Pandas
+
+O método `df.query()` é uma forma mais **legível e intuitiva** de filtrar dados em um DataFrame, utilizando uma sintaxe semelhante ao SQL.
+
+## 📌 Sintaxe básica
+
+```python
+df.query('condição')
+```
+
+---
+
+## ✅ Exemplos de uso
+
+### Filtrar por valor numérico
+
+```python
+df.query("Price > 500000")
+```
+
+### Múltiplas condições com `and`
+
+```python
+df.query("Price > 500000 and Rooms >= 3")
+```
+
+### Condições com `or`
+
+```python
+df.query("Rooms >= 4 or Price < 300000")
+```
+
+### Filtrar por texto
+
+```python
+df.query("Regionname == 'Western Metropolitan'")
+```
+
+---
+
+## 🔁 Usando variáveis externas
+
+Para usar variáveis dentro do `query`, utilize o símbolo `@`:
+
+```python
+preco = 500000
+
+df.query("Price > @preco")
+```
+
+---
+
+## 🔗 Combinação de condições
+
+```python
+df.query("Price <= 500000 and Regionname == 'Western Metropolitan'")
+```
+
+---
+
+## 💡 Vantagens do `query`
+
+* Código mais **limpo e legível**
+* Sintaxe semelhante ao **SQL**
+* Ideal para filtros complexos
+* Evita uso excessivo de `&` e `|`
+
+---
+
+## ⚠️ Observações
+
+* Use aspas corretamente:
+
+  * String externa com `"` → interna com `'`
+* Para múltiplas condições:
+
+  * Use `and` ao invés de `&`
+  * Use `or` ao invés de `|`
+
+---
+
+## 🚀 Conclusão
+
+O `df.query()` é uma excelente alternativa para tornar seu código mais organizado e fácil de entender ao trabalhar com filtragem de dados no Pandas.
+
