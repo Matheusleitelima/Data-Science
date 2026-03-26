@@ -82,6 +82,12 @@ df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
 
 Isso evita erros futuros, principalmente ao usar métodos como `query()`.
 
+Limpeza de dados
+
+df.isnull().sum()
+df.dtypes
+df.duplicated().sum()
+
 ---
 
 ## ⚠️ Observações
